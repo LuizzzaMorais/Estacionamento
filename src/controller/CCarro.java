@@ -5,6 +5,7 @@
  */
 package controller;
 
+import estacionamento.Estacionamento;
 import java.util.ArrayList;
 import model.Carro;
 
@@ -36,14 +37,14 @@ public class CCarro {
         Carro ca1 = new Carro();
         ca1.setIdCarro(this.geraID());
         ca1.setMarca("Chevrolet");
-        ca1.setModelo("Vectra");
+        ca1.setModelo("Celta");
         ca1.setAno(1999);
         ca1.setProprietario(Estacionamento.cadPessoa.getPessoaNomePessoa("Luiza"));
         this.addCarro(ca1);
         Carro ca2 = new Carro();
         ca1.setIdCarro(this.geraID());
-        ca1.setMarca("Fiat");
-        ca1.setModelo("Palio");
+        ca1.setMarca("Toyota");
+        ca1.setModelo("Supra MK4");
         ca1.setAno(2006);
         ca1.setProprietario(Estacionamento.cadPessoa.getPessoaNomePessoa("João Carlos"));
         this.addCarro(ca2);

@@ -39,7 +39,21 @@ public class Estacionamento {
         System.out.print("Escolha uma opção: ");
     }
     
-    
+    public static void deletarPessoa() {
+        System.out.println("Deletar Pessoa");
+        System.out.print("Informe o CNPJ: ");
+        String cnpj = leia.next();
+            Pessoa edi = cadPessoa.getPessoaCnpj(cnpj);
+            if (edi != null) {
+                cadPessoa.removePessoa(edi);
+                System.out.println("Pessoa deletada com sucesso!");
+            } else {
+                System.out.println("Pessoa não conta na base de dados.");
+            }
+        } else {
+            System.out.println("CNPJ inválido.");
+        }
+    }
 
     /**
      * @param args the command line arguments

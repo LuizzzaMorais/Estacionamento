@@ -14,12 +14,12 @@ public class Carro {
     private String Marca;
     private String Modelo;
     private int Ano;
-    private String Proprietario;
+    private Pessoa Proprietario;
 
     public Carro() {
     }
 
-    public Carro(int idCarro, String Marca, String Modelo, int Ano, String Proprietario) {
+    public Carro(int idCarro, String Marca, String Modelo, int Ano, Pessoa Proprietario) {
         this.idCarro = idCarro;
         this.Marca = Marca;
         this.Modelo = Modelo;
@@ -59,11 +59,11 @@ public class Carro {
         this.Ano = Ano;
     }
 
-    public String getProprietario() {
+    public Pessoa getProprietario() {
         return Proprietario;
     }
 
-    public void setProprietario(String Proprietario) {
+    public void setProprietario(Pessoa Proprietario) {
         this.Proprietario = Proprietario;
     }
 
@@ -71,6 +71,5 @@ public class Carro {
     public String toString() {
         return "Carro{" + "idCarro=" + idCarro + ", Marca=" + Marca + ", Modelo=" + Modelo + ", Ano=" + Ano + ", Proprietario=" + Proprietario + '}';
     }
-    
     
 }

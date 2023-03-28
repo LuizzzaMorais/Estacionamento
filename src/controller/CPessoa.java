@@ -13,7 +13,6 @@ import model.Pessoa;
  * @author 182120039
  */
 public class CPessoa {
-    
 
     ArrayList<Pessoa> pessoas = new ArrayList<>();
     int idPessoa = 1;
@@ -26,41 +25,28 @@ public class CPessoa {
         this.pessoas.add(p);
     }
 
-    public ArrayList<Pessoa> geteditoras() {
+    public ArrayList<Pessoa> getpessoas() {
         return this.pessoas;
     }
 
     public void removepessoa(Pessoa p) {
         this.pessoas.remove(p);
     }
-    
+
     public void mockpessoas() {
         Pessoa p1 = new Pessoa();
-        p1.setIdLivro(this.geraID());
-        p1.setTitulo("Os Sete Maridos de Evelyn Hugo");
-        p1.setAutor("Taylor Jenkins Reid");
-        p1.setAssunto("Romance");
-        p1.setIsbn("123");
+        p1.setIdPessoa(this.geraID());
+        p1.setNomePessoa("Luiza");
+        p1.setSobrenomePessoa("Morais");
+        p1.setEndereco("Souza Costa, 50");
+        p1.setIdadePessoa(19);
         this.addPessoa(p1);
-        Livro l2 = new Livro();
-        l2.setIdLivro(this.geraID());
-        l2.setTitulo("Harry Potter e a Pedra Filosofal");
-        l2.setAutor("J.K. Rowling");
-        l2.setAssunto("Ficção Aventura");
-        l2.setIsbn("321");
-        l2.setEstoque(20);
-        l2.setPreco((float) 40.50);
-        l2.setIdEditora(Livraria.cadEditora.getEditoraCnpj("22150710000130"));
-        this.addLivro(l2);
-        Livro l3 = new Livro();
-        l3.setIdLivro(this.geraID());
-        l3.setTitulo("Pequeno Principe");
-        l3.setAutor("Antoine de Saint");
-        l3.setAssunto("Ludico");
-        l3.setIsbn("312");
-        l3.setEstoque(15);
-        l3.setPreco((float) 19.90);
-        l3.setIdEditora(Livraria.cadEditora.getEditoraCnpj("77860014000100"));
-        this.addLivro(l3);
+        Pessoa p2 = new Pessoa();
+        p1.setIdPessoa(this.geraID());
+        p1.setNomePessoa("João Carlos");
+        p1.setSobrenomePessoa("Schultz");
+        p1.setEndereco("Centro, 100");
+        p1.setIdadePessoa(20);
+        this.addPessoa(p2);
+    }
 }
-

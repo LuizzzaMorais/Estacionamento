@@ -10,21 +10,26 @@ package model;
  * @author 182120023
  */
 public class Carro {
+
     private int idCarro;
     private String Marca;
     private String Modelo;
     private int Ano;
     private Pessoa Proprietario;
+    private int renavam;
+    private String placa;
 
     public Carro() {
     }
 
-    public Carro(int idCarro, String Marca, String Modelo, int Ano, Pessoa Proprietario) {
+    public Carro(int idCarro, String Marca, String Modelo, int Ano, Pessoa Proprietario, int renavam, String placa) {
         this.idCarro = idCarro;
         this.Marca = Marca;
         this.Modelo = Modelo;
         this.Ano = Ano;
         this.Proprietario = Proprietario;
+        this.renavam = renavam;
+        this.placa = placa;
     }
 
     public int getIdCarro() {
@@ -67,9 +72,27 @@ public class Carro {
         this.Proprietario = Proprietario;
     }
 
+    public int getRenavam() {
+        return renavam;
+    }
+
+    public void setRenavam(int renavam) {
+        this.renavam = renavam;
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
     @Override
     public String toString() {
-        return "Carro{" + "idCarro=" + idCarro + ", Marca=" + Marca + ", Modelo=" + Modelo + ", Ano=" + Ano + ", Proprietario=" + Proprietario + '}';
+        return "Carro{" + "idCarro=" + idCarro + ", Marca=" + Marca + ", Modelo=" + Modelo + ", Ano=" + Ano + ", Proprietario=" + Proprietario + ", renavam=" + renavam + ", placa=" + placa + '}';
     }
-    
+
+   
+
 }

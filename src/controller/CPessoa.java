@@ -42,11 +42,11 @@ public class CPessoa {
         p1.setIdadePessoa(19);
         this.addPessoa(p1);
         Pessoa p2 = new Pessoa();
-        p1.setIdPessoa(this.geraID());
-        p1.setNomePessoa("João Carlos");
-        p1.setSobrenomePessoa("Schultz");
-        p1.setEndereco("Centro, 100");
-        p1.setIdadePessoa(20);
+        p2.setIdPessoa(this.geraID());
+        p2.setNomePessoa("João Carlos");
+        p2.setSobrenomePessoa("Schultz");
+        p2.setEndereco("Centro, 100");
+        p2.setIdadePessoa(20);
         this.addPessoa(p2);
     }
 }

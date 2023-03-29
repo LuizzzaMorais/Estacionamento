@@ -8,6 +8,7 @@ package estacionamento;
 import controller.CCarro;
 import controller.CPessoa;
 import java.util.Scanner;
+import util.Validadores;
 
 /**
  *
@@ -43,6 +44,7 @@ public class Estacionamento {
         System.out.println("Deletar Pessoa");
         System.out.print("Informe o CNPJ: ");
         String cnpj = leia.next();
+        if (Validadores.isCNPJ(cnpj)) {
             Pessoa edi = cadPessoa.getPessoaCnpj(cnpj);
             if (edi != null) {
                 cadPessoa.removePessoa(edi);

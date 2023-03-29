@@ -10,21 +10,24 @@ package model;
  * @author 182120023
  */
 public class Pessoa {
+
     private int idPessoa;
     private String nomePessoa;
     private String sobrenomePessoa;
     private int idadePessoa;
     private String endereco;
+    private String cpf;
 
     public Pessoa() {
     }
 
-    public Pessoa(int idPessoa, String nomePessoa, String sobrenomePessoa, int idadePessoa, String endereco) {
+    public Pessoa(int idPessoa, String nomePessoa, String sobrenomePessoa, int idadePessoa, String endereco, String cpf) {
         this.idPessoa = idPessoa;
         this.nomePessoa = nomePessoa;
         this.sobrenomePessoa = sobrenomePessoa;
         this.idadePessoa = idadePessoa;
         this.endereco = endereco;
+        this.cpf = cpf;
     }
 
     public int getIdPessoa() {
@@ -67,11 +70,18 @@ public class Pessoa {
         this.endereco = endereco;
     }
 
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
     @Override
     public String toString() {
-        return "Pessoa{" + "idPessoa=" + idPessoa + ", nomePessoa=" + nomePessoa + ", sobrenomePessoa=" + sobrenomePessoa + ", idadePessoa=" + idadePessoa + ", endereco=" + endereco + '}';
+        return "Pessoa{" + "idPessoa=" + idPessoa + ", nomePessoa=" + nomePessoa + ", sobrenomePessoa=" + sobrenomePessoa + ", idadePessoa=" + idadePessoa + ", endereco=" + endereco + ", cpf=" + cpf + '}';
     }
-    
-    
+
     
 }

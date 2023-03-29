@@ -8,12 +8,16 @@ package estacionamento;
 import controller.CCarro;
 import controller.CPessoa;
 import java.util.Scanner;
+import model.Pessoa;
 import util.Validadores;
 
 /**
  *
  * @author 182120039
  */
+
+//NÃO TEM METODO NENHUM PRONTO NESSA MERDA,ODEIO TODOS.
+
 public class Estacionamento {
 
     public static CPessoa cadPessoa = new CPessoa();
@@ -39,7 +43,16 @@ public class Estacionamento {
         System.out.println("0 - Sair");
         System.out.print("Escolha uma opção: ");
     }
-    
+
+    public static void listarNomesP() {
+        for (Pessoa NP : cad.getNomePessoa()) {
+            System.out.println("---");
+            System.out.println("ISBN:\t" + pessoa.getCpf());
+            System.out.println("Nome:\t" + pessoa.getNomePessoa());
+            System.out.println("Fone:\t" + pessoa.getTelefone());
+        }// incompleto
+    }
+
     public static void deletarPessoa() {
         System.out.println("Deletar Pessoa");
         System.out.print("Informe o CNPJ: ");
@@ -54,6 +67,49 @@ public class Estacionamento {
             }
         } else {
             System.out.println("CNPJ inválido.");
+        }
+    }
+
+    public static void cadastrarPessoa() {
+        int idPessoa;
+        String nomePessoa;
+        String sobrenomePessoa;
+        int idadePessoa;
+        String endereco;
+        String cpf;
+
+        System.out.println(".: Cadastro de Pessoa :.");
+        System.out.print("Informe o CPF: ");
+        boolean cpfIs;
+        int opCPF;
+        do {
+            cpf = leia.next();
+            cpfIs = Validadores.isCPF(cpf);
+            if (!cpfIs) {
+                System.out.println("CPF inválido." + "\nDeseja tentar novamente? 1 - Sim | 2 - Não");
+                opCPF = leiaNumInt();
+                if (opCPF == 1) {
+                    System.out.print("Informe o CPF:");
+                } else if (opCPF == 2) {
+                    System.out.println("Cadastro cancelado pelo usuário.");
+                    break;
+                }
+            }
+        } while (!cpfIs);
+        if (cadPessoa.getPessoaCPF(cpf) != null) {
+            System.out.println("CPF já cadastrado");
+        } else {
+            System.out.print("Informe o nome: ");
+            nomePessoa = leia.next();
+            System.out.print("Informe o telefone: ");
+            telefone = leia.next();
+            System.out.println("Informe o endereço: ");
+            endereco = leia.next();
+            idPessoa = cadPessoa.geraID();
+            Pessoa cli = new Pessoa(idPessoa, nomePessoa, cpf, cnpj, endereco, telefone);
+            cadPessoa.addPessoa(cli);
+            System.out.println("Pessoa cadastrado com sucesso");
+
         }
     }
 

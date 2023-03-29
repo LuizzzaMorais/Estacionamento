@@ -49,4 +49,8 @@ public class CPessoa {
         p2.setIdadePessoa(20);
         this.addPessoa(p2);
     }
+
+    public Pessoa getPessoaNomePessoa(String luiza) {
+        return null;
+    }
 }

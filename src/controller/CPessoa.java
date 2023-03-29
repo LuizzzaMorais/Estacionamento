@@ -40,6 +40,7 @@ public class CPessoa {
         p1.setSobrenomePessoa("Morais");
         p1.setEndereco("Souza Costa, 50");
         p1.setIdadePessoa(19);
+        p1.setCpf("60076121046");
         this.addPessoa(p1);
         Pessoa p2 = new Pessoa();
         p2.setIdPessoa(this.geraID());
@@ -47,10 +48,21 @@ public class CPessoa {
         p2.setSobrenomePessoa("Schultz");
         p2.setEndereco("Centro, 100");
         p2.setIdadePessoa(20);
+        p2.setCpf("52605299015");
         this.addPessoa(p2);
     }
 
-    public Pessoa getPessoaNomePessoa(String luiza) {
-        return null;
+    public Pessoa getPessoaCPF(String cpf) {
+        Pessoa p = null;
+        for (Pessoa pessoa : pessoas) {
+            if (pessoa.getCpf().equals(cpf)) {
+                p = pessoa;
+                break;
+            }
+
+        }
+        return p;
+
     }
-}
+    }
+

@@ -44,14 +44,15 @@ public class Estacionamento {
         System.out.print("Escolha uma opção: ");
     }
 
-    public static void listarNomesP() {
-        for (Pessoa NP : cadPessoa.getNomePessoa()) {// criar TODOS OS Get nos controllers.
+    public static void listarPessoa() {
+        System.out.println("--Listar Pessoas--");
+        for (Pessoa pessoa : cadPessoa.getpessoas()) {// criar TODOS OS Get nos controllers.
             System.out.println("---");
             System.out.println("Nome:\t" + pessoa.getNomePessoa());
             System.out.println("CPF:\t" + pessoa.getCpf());
-            System.out.println("Fone:\t" + pessoa.getTelefone());
-            System.out.println("Idade:\t" + pessoa.getIdade());
-            System.out.println("Proprietario:\t" + pessoa.getCarro());//aqui não faço ideia, mas seria " Proprietario: Palio " algo assim. em caso de não ser, ficaria um não ao lado.
+            System.out.println("Idade:\t" + pessoa.getIdadePessoa());
+            String placa = null;
+            System.out.println("Proprietario:\t" + Estacionamento.cadCarro.getProprietario(placa));//aqui não faço ideia, mas seria " Proprietario: Palio " algo assim. em caso de não ser, ficaria um não ao lado.
             
         }// incompleto
     }
@@ -61,9 +62,9 @@ public class Estacionamento {
         System.out.print("Informe o CPF: ");
         String cpf = leia.next();
         if (Validadores.isCPF(cpf)) {
-            Pessoa edi = cadPessoa.getPessoaCpf(cpf);
-            if (edi != null) {
-                cadPessoa.removePessoa();
+            Pessoa p = cadPessoa.getPessoaCPF(cpf);
+            if (p != null) {
+                cadPessoa.removepessoa(p);
                 System.out.println("Pessoa deletada com sucesso!");
             } else {
                 System.out.println("Pessoa não conta na base de dados.");
@@ -76,8 +77,8 @@ public class Estacionamento {
     public static void cadastrarPessoa() {
         int idPessoa;
         String nomePessoa;
-        String sobrenomePessoa;
-        int idadePessoa;
+        String sobrenomePessoa = null;
+        int idadePessoa = 0;
         String endereco;
         String cpf;
 
@@ -104,13 +105,16 @@ public class Estacionamento {
         } else {
             System.out.print("Informe o nome: ");
             nomePessoa = leia.next();
-            System.out.print("Informe o telefone: ");
-            telefone = leia.next();
+            System.out.print("Informe seu sobrenome: ");
+            sobrenomePessoa = leia.next();
+            System.out.print("Informe sua idade: ");
+            idadePessoa = leia.nextInt();
             System.out.println("Informe o endereço: ");
             endereco = leia.next();
+            
             idPessoa = cadPessoa.geraID();
-            Pessoa cli = new Pessoa(idPessoa, nomePessoa, cpf, cpf, endereco, telefone);
-            cadPessoa.addPessoa(cli);
+            Pessoa p = new Pessoa(idPessoa, nomePessoa, sobrenomePessoa, idadePessoa, endereco, cpf);
+            cadPessoa.addPessoa(p);
             System.out.println("Pessoa cadastrado com sucesso");
 
         }

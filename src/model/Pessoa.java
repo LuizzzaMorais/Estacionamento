@@ -30,6 +30,8 @@ public class Pessoa {
         this.cpf = cpf;
     }
 
+  
+
     public int getIdPessoa() {
         return idPessoa;
     }

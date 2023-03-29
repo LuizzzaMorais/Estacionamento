@@ -37,10 +37,10 @@ public class CCarro {
         Carro ca1 = new Carro();
         ca1.setIdCarro(this.geraID());
         ca1.setMarca("Chevrolet");
-        ca1.setModelo("Celta");
-        ca1.setAno(1999);
+        ca1.setModelo("Cruze");
+        ca1.setAno(2019);
         ca1.setRenavam(783126375);
-        ca1.setProprietario(Estacionamento.cadPessoa.getPessoaNomePessoa("Luiza"));
+        ca1.setProprietario(Estacionamento.cadPessoa.getPessoaCPF("60076121046"));
         this.addCarro(ca1);
         Carro ca2 = new Carro();
         ca2.setIdCarro(this.geraID());
@@ -48,9 +48,20 @@ public class CCarro {
         ca2.setModelo("Supra MK4");
         ca2.setAno(1993);
         ca2.setRenavam(312321841);
-        ca2.setProprietario(Estacionamento.cadPessoa.getPessoaNomePessoa("João Carlos"));
+        ca2.setProprietario(Estacionamento.cadPessoa.getPessoaCPF("52605299015"));
         this.addCarro(ca2);
     }
+ public Carro getProprietario(String placa) {
+        Carro ca = null;
+        for (Carro carro : carros) {
+            if (carro.getPlaca().equals(placa)) {
+                ca = carro;
+                break;
+            }
 
+        }
+        return ca;
+
+    }
     
 }

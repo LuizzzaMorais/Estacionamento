@@ -33,13 +33,14 @@ public class CCarro {
         this.carros.remove(ca);
     }
 
-    public void mockclientes() {
+    public void mockcarros() {
         Carro ca1 = new Carro();
         ca1.setIdCarro(this.geraID());
         ca1.setMarca("Chevrolet");
         ca1.setModelo("Cruze");
         ca1.setAno(2019);
         ca1.setRenavam(783126375);
+        ca1.setPlaca("CRZ-9041");
         ca1.setProprietario(Estacionamento.cadPessoa.getPessoaCPF("60076121046"));
         this.addCarro(ca1);
         Carro ca2 = new Carro();
@@ -48,8 +49,22 @@ public class CCarro {
         ca2.setModelo("Supra MK4");
         ca2.setAno(1993);
         ca2.setRenavam(312321841);
+        ca2.setPlaca("SPR-1993");
         ca2.setProprietario(Estacionamento.cadPessoa.getPessoaCPF("52605299015"));
         this.addCarro(ca2);
+    }
+    
+    public Carro getCarroPlaca(String placa) {
+        Carro ca = null;
+        for (Carro carro : carros) {
+            if (carro.getPlaca().equals(placa)) {
+                ca = carro;
+                break;
+            }
+
+        }
+        return ca;
+
     }
  public Carro getProprietario(String placa) {
         Carro ca = null;

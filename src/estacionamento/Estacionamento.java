@@ -8,6 +8,7 @@ package estacionamento;
 import controller.CCarro;
 import controller.CPessoa;
 import java.util.Scanner;
+import model.Carro;
 import model.Pessoa;
 import util.Validadores;
 
@@ -15,9 +16,7 @@ import util.Validadores;
  *
  * @author 182120039
  */
-
 //NÃO TEM METODO NENHUM PRONTO NESSA MERDA,ODEIO TODOS.
-
 public class Estacionamento {
 
     public static CPessoa cadPessoa = new CPessoa();
@@ -51,9 +50,7 @@ public class Estacionamento {
             System.out.println("Nome:\t" + pessoa.getNomePessoa());
             System.out.println("CPF:\t" + pessoa.getCpf());
             System.out.println("Idade:\t" + pessoa.getIdadePessoa());
-            String placa = null;
-            System.out.println("Proprietario:\t" + Estacionamento.cadCarro.getProprietario(placa));//aqui não faço ideia, mas seria " Proprietario: Palio " algo assim. em caso de não ser, ficaria um não ao lado.
-            
+
         }// incompleto
     }
 
@@ -74,7 +71,7 @@ public class Estacionamento {
         }
     }
 
-    public static void cadastrarPessoa() {
+    public static void cadPessoa() {
         int idPessoa;
         String nomePessoa;
         String sobrenomePessoa = null;
@@ -111,7 +108,7 @@ public class Estacionamento {
             idadePessoa = leia.nextInt();
             System.out.println("Informe o endereço: ");
             endereco = leia.next();
-            
+
             idPessoa = cadPessoa.geraID();
             Pessoa p = new Pessoa(idPessoa, nomePessoa, sobrenomePessoa, idadePessoa, endereco, cpf);
             cadPessoa.addPessoa(p);
@@ -120,11 +117,202 @@ public class Estacionamento {
         }
     }
 
+    private static void editarPessoa() {
+        System.out.println("-- Editar Pessoa --");
+        System.out.print("Informe o CPF: ");
+        String cpf = leia.next();
+        if (Validadores.isCPF(cpf)) {
+            Pessoa p = cadPessoa.getPessoaCPF(cpf);
+            if (p != null) {
+                System.out.println("1 - Nome:\t" + p.getNomePessoa());
+                System.out.println("2 - Sobrenome:\t" + p.getSobrenomePessoa());
+                System.out.println("3 - Endereço:\t" + p.getEndereco());
+                System.out.println("4 - Idade:\t" + p.getIdadePessoa());
+                System.out.println("5 - Todos os campos acima");
+                System.out.print("Qual campo deseja alterar?" + "\nDigite aqui: ");
+                int opEditar = leiaNumInt();
+                switch (opEditar) {
+                    case 1:
+                        System.out.print("Informe o nome a ser alterado: ");
+                        p.setNomePessoa(leia.next());
+                        break;
+                    case 2:
+                        System.out.println("Informe o sobrenome a ser alterado: ");
+                        p.setSobrenomePessoa(leia.next());
+                        break;
+                    case 3:
+                        System.out.print("Informe o endereço a ser alterado: ");
+                        p.setEndereco(leia.next());
+                        break;
+                    case 4:
+                        System.out.println("Informe a idade a ser alterada: ");
+                        p.setIdadePessoa(leia.nextInt());
+                    case 5:
+                        System.out.print("Informe todos os campos abaixo: ");
+                        System.out.print("Informe o nome a ser alterado: ");
+                        p.setNomePessoa(leia.next());
+                        System.out.print("Informe o endereço a ser alterado: ");
+                        p.setEndereco(leia.next());
+
+                        break;
+                    default:
+                        System.out.println("Opção inválida.");
+                        break;
+                }
+                System.out.println("Pessoa:\n" + p.toString());
+            } else {
+                System.out.println("Pessoa não cadastrado na base de dados.");
+            }
+        } else {
+            System.out.println("CPF inválido.");
+        }
+
+    }
+
+    public static void subMenu(int op) {
+        String tpCad = null;
+        switch (op) {
+            case 1:
+                tpCad = "Pessoa";
+                break;
+            case 2:
+                tpCad = "Carro";
+                break;
+
+        }
+        System.out.println(".: Gerenciar " + tpCad + " :.");
+        System.out.println("1 - Cadastrar " + tpCad);
+        System.out.println("2 - Editar " + tpCad);
+        System.out.println("3 - Listar " + tpCad + "s");
+        System.out.println("4 - Deletar " + tpCad);
+        System.out.println("0 - Voltar");
+        System.out.print("Escolha uma das opções acima: ");
+
+    }
+
+    private static void cadCarro() {
+        System.out.println("--Cadastro de Carro--");
+        System.out.print("Informe a placa: ");
+        String placa = leia.nextLine();
+        if (cadCarro.getCarroPlaca(placa) != null) {
+            System.out.println("Carro já cadastrado. ");
+        } else {
+            int idCarro = cadCarro.geraID();
+            System.out.print("Informe o renavam: ");
+            int renavam = leiaNumInt();
+            System.out.print("Informe a marca: ");
+            String marca = leia.next();
+            System.out.print("Informe o modelo: ");
+            String modelo = leia.nextLine();
+            System.out.print("Informe o ano: ");
+            int ano = leiaNumInt();
+
+            boolean isCPF = false;
+            Pessoa idPessoa = null;
+            do {
+                System.out.print("Informe o CPF do proprietário: ");
+                String cpf = leia.nextLine();
+                isCPF = Validadores.isCPF(cpf);
+                if (isCPF) {
+                    idPessoa = cadPessoa.getPessoaCPF(cpf);
+                    if (idPessoa == null) {
+                        System.out.println("Pessoa sob este CPF não cadastrada. ");
+                    } else {
+                        System.out.println("Pessoa: " + idPessoa.getNomePessoa());
+                    }
+                } else {
+                    System.out.println("CPF inválido. ");
+                }
+            } while (isCPF);
+            Carro li = new Carro(idCarro, marca, modelo, ano, idPessoa, renavam, placa);
+            cadCarro.addCarro(li);
+            System.out.println("Carro cadastrado com sucesso");
+        }
+    }
+
+    private static void listarCarro() {
+        System.out.println("--Listar Carro--");
+        for (Carro carro : cadCarro.getcarros()) {
+            System.out.println("Placa:\t" + carro.getPlaca());
+            System.out.println("Marca:\t" + carro.getMarca());
+            System.out.println("Modelo:\t" + carro.getModelo());
+            System.out.println("Ano:\t" + carro.getAno());
+            System.out.println("Renavam:\t" + carro.getRenavam());
+            System.out.println("Proprietário:\t" + carro.getProprietario().getNomePessoa());
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
+        cadPessoa.mockpessoas();
+        cadCarro.mockcarros();
+
+        int opM;
+
+        do {
+            menuP();
+            opM = leiaNumInt();
+            switch (opM) {
+                case 1:
+                case 2:
+                    int opSM;
+                    do {
+                        subMenu(opM);
+                        opSM = leiaNumInt();
+                        switch (opSM) {
+                            case 1:
+                                System.out.println("-- Cadastrar --");
+                                if (opM == 1) {
+                                    cadPessoa();
+                                } else if (opM == 2) {
+                                    cadCarro();
+                                }
+                                break;
+                            case 2:
+                                System.out.println("-- Editar --");
+                                if (opM == 1) {
+                                    editarPessoa();
+                                } else if (opM == 2) {
+                                    editarCarro();
+                                }
+                                break;
+                            case 3:
+                                System.out.println("-- Listar --");
+                                if (opM == 1) {
+                                    listarPessoa();
+                                } else if (opM == 2) {
+                                    listarCarro();
+                                }
+                                break;
+                            case 4:
+                                System.out.println("-- Deletar --");
+                                if (opM == 1) {
+                                    deletarPessoa();
+                                } else if (opM == 2) {
+                                    deletarCarro();
+                                }
+                                break;
+                            case 0:
+                                System.out.println("-- Menu Principal --");
+                                break;
+                            default:
+                                System.out.println("Opção Inválida, tente novamente.");
+                                break;
+                        }
+                    } while (opSM != 0);
+                    break;
+
+                case 0:
+                    System.out.println("Aplicação encerrada pelo usuário.");
+                    break;
+                default:
+                    System.out.println("Opção inváldida, tente novamente.");
+            }
+        } while (opM != 0);
     }
 
+    // TODO code application logic here
 }

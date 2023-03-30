@@ -106,7 +106,7 @@ public class Estacionamento {
             sobrenomePessoa = leia.next();
             System.out.print("Informe sua idade: ");
             idadePessoa = leia.nextInt();
-            System.out.println("Informe o endereço: ");
+            System.out.print("Informe o endereço: ");
             endereco = leia.next();
 
             idPessoa = cadPessoa.geraID();
@@ -193,7 +193,7 @@ public class Estacionamento {
     private static void cadCarro() {
         System.out.println("--Cadastro de Carro--");
         System.out.print("Informe a placa: ");
-        String placa = leia.nextLine();
+        String placa = leia.next();
         if (cadCarro.getCarroPlaca(placa) != null) {
             System.out.println("Carro já cadastrado. ");
         } else {
@@ -203,7 +203,7 @@ public class Estacionamento {
             System.out.print("Informe a marca: ");
             String marca = leia.next();
             System.out.print("Informe o modelo: ");
-            String modelo = leia.nextLine();
+            String modelo = leia.next();
             System.out.print("Informe o ano: ");
             int ano = leiaNumInt();
 
@@ -211,22 +211,21 @@ public class Estacionamento {
             Pessoa idPessoa = null;
             do {
                 System.out.print("Informe o CPF do proprietário: ");
-                String cpf = leia.nextLine();
+                String cpf = leia.next();
                 isCPF = Validadores.isCPF(cpf);
                 if (isCPF) {
                     idPessoa = cadPessoa.getPessoaCPF(cpf);
                     if (idPessoa == null) {
                         System.out.println("Pessoa sob este CPF não cadastrada. ");
                     } else {
-                        System.out.println("Pessoa: " + idPessoa.getNomePessoa());
+                        Carro ca = new Carro(idCarro, marca, modelo, ano, idPessoa, renavam, placa);
+                        cadCarro.addCarro(ca);
+                        System.out.println("Carro cadastrado com sucesso");
                     }
                 } else {
                     System.out.println("CPF inválido. ");
                 }
-            } while (isCPF);
-            Carro li = new Carro(idCarro, marca, modelo, ano, idPessoa, renavam, placa);
-            cadCarro.addCarro(li);
-            System.out.println("Carro cadastrado com sucesso");
+            } while (!isCPF);
         }
     }
 
@@ -239,6 +238,70 @@ public class Estacionamento {
             System.out.println("Ano:\t" + carro.getAno());
             System.out.println("Renavam:\t" + carro.getRenavam());
             System.out.println("Proprietário:\t" + carro.getProprietario().getNomePessoa());
+        }
+    }
+
+    private static void deletarCarro() {
+        System.out.println("Deletar Carro");
+        System.out.print("Informe a placa: ");
+        String placa = leia.next();
+        Carro ca = cadCarro.getCarroPlaca(placa);
+        if (ca != null) {
+            cadCarro.removecarro(ca);
+            System.out.println("Carro deletado com sucesso!");
+        } else {
+            System.out.println("Carro não consta na base de dados.");
+        }
+    }
+
+    private static void editarCarro() {
+        System.out.println("-- Editar Carro --");
+        System.out.println("Informe a placa:");
+        String placa = leia.next();
+        Carro ca = cadCarro.getCarroPlaca(placa);
+        if (ca != null) {
+            System.out.println("1 - Marca:\t" + ca.getMarca());
+            System.out.println("2 - Modelo:\t" + ca.getModelo());
+            System.out.println("3 - Ano:\t" + ca.getAno());
+            System.out.println("4 - Renavam:\t" + ca.getRenavam());
+            System.out.println("5 - Todos os campos acima");
+            System.out.print("Qual campo deseja alterar?" + "\nDigite aqui: ");
+            int opEditar = leiaNumInt();
+            switch (opEditar) {
+                case 1:
+                    System.out.print("Informe a marca a ser alterada: ");
+                    ca.setMarca(leia.nextLine());
+                    break;
+                case 2:
+                    System.out.print("Informe o modelo a ser alterado: ");
+                    ca.setModelo(leia.nextLine());
+                    break;
+                case 3:
+                    System.out.print("Informe o ano a ser alterado: ");
+                    ca.setAno(leiaNumInt());
+                    break;
+                case 4:
+                    System.out.print("Informe o renavam a ser alterado: ");
+                    ca.setAno(leiaNumInt());
+                    break;
+                case 5:
+                    System.out.print("Informe todos os campos abaixo: ");
+                    System.out.print("Informe a marca a ser alterada: ");
+                    ca.setMarca(leia.next());
+                    System.out.print("Informe o assunto a ser alterado: ");
+                    ca.setModelo(leia.nextLine());
+                    System.out.print("Informe o ano a ser alterado: ");
+                    ca.setAno(leiaNumInt());
+                    System.out.print("Informe o renavam a ser alterado: ");
+                    ca.setRenavam(leiaNumInt());
+                    break;
+                default:
+                    System.out.println("Opção inválida.");
+                    break;
+            }
+            System.out.println("Carro:\n" + ca.toString());
+        } else {
+            System.out.println("Carro não cadastrado na base de dados.");
         }
     }
 

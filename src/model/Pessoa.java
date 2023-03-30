@@ -82,7 +82,7 @@ public class Pessoa {
 
     @Override
     public String toString() {
-        return "Pessoa{" + "idPessoa=" + idPessoa + ", nomePessoa=" + nomePessoa + ", sobrenomePessoa=" + sobrenomePessoa + ", idadePessoa=" + idadePessoa + ", endereco=" + endereco + ", cpf=" + cpf + '}';
+        return "Pessoa" + "\nNome: " + nomePessoa + "\nSobrenome: " + sobrenomePessoa + "\nIdade: " + idadePessoa + "\nEndereco: " + endereco + "\nCPF: " + cpf;
     }
 
     
